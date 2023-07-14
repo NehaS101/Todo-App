@@ -19,7 +19,11 @@ const CreateTodo = ({onCreate}) =>{
     return (
 <div>
         <h2>Create New Todo</h2>
-        
+        <form onSubmit={handleSubmit}>
+            <input type="text" placeholder='Title' value ={title} onChange={(e)=>setTitle(e.target.value)}/>
+            <textarea placeholder='Description' value={description} onChange={(e)=>setDescription(e.target.value)}></textarea>       
+            <button type="submit">Add Todo</button>
+        </form>
 </div>
     );
 }
