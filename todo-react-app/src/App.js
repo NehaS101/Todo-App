@@ -8,9 +8,25 @@ import CreateTodo from './CreateTodo';
 
 function App() {
   const [todo,setTodos] = useState([]);
+  const addTodo = (todo)=>{
+    setTodos([...todos,todo]);
+  }
   return (
     <div className="App">
-     
+     <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/todos">Todo List</Link>
+            </li>
+            <li>
+              <Link to="/create">Create Todo</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+     </Router>
     </div>
   );
 }
