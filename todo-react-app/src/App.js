@@ -8,9 +8,26 @@ import CreateTodo from './CreateTodo';
 
 function App() {
   const [todo,setTodos] = useState([]);
+
   const addTodo = (todo)=>{
-    setTodos([...todos,todo]);
+    setTodos([...todo,todo]);
   }
+
+  const deleteTodo = (id) => {
+    const updatedTodos = todo.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+  };
+
+  const markTodoCompleted = (id) => {
+    const updatedTodos = todo.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, completed: !todo.completed };
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  };
+
   return (
     <div className="App">
      <Router>
@@ -25,6 +42,17 @@ function App() {
             </li>
           </ul>
         </nav>
+        <Route exact path="/todos">
+          <TodoList
+          todos={todo}
+          onDelete={deleteTodo}
+          onmarkComplete={markTodoComplete}
+          />
+        </Route>
+        <Route exact path="/create">
+          <CreateTodo onCreate={addTodo}/>
+
+        </Route>
       </div>
      </Router>
     </div>
